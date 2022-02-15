@@ -1,0 +1,64 @@
+﻿@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+
+
+    <div class="container">
+        <div class="row">
+                <form class="card card-sm" style="margin-top:20px; float:right" method ="GET">          
+                            <input class="my-search" style="display:inline;" type="text" name="search" value="@ViewBag.SearchString" placeholder="Cautati produse dupa nume">
+                            <button class="action-button" style="display:inline;" type="submit"><i class="fa fa-search"></i> Cauta! </button>
+                </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titie-section wow fadeInDown animated ">
+                    <h1>PRODUSE</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filter-menu">
+                    <div class="button-group sort-button-group">
+                        <a class="button" href="/Products/SortareAsc">Pret crescator</a>
+                        <a class="button" href="/Products/SortareDesc">Pret descrescator</a>
+                        <a class="button" href="/Products/AscRating">Rating crescator</a>
+                        <a class="button" href="/Products/DescRating">Rating descrescator</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            @foreach (Proiect.Models.Product product in ViewBag.Products)
+            {
+                <div class="product-item">
+                   
+                        <a href="/Products/Show/@product.ProductId">
+                            <img src="@product.Photo" class="img-responsive" width="255" height="322" alt="">
+                            <div class="product-title">
+
+                                <h3>@product.Title</h3>
+                                <span>@product.Price</span>
+                            </div>
+                            <div class="product-title2">
+                                @for (var i = 1; i <= Math.Round(product.ProductRating,0, MidpointRounding.AwayFromZero); i++)
+                                {
+                                    <span class="starGlowN"></span>
+                                }
+                                @for (var i = (Math.Round(product.ProductRating) + 1); i <= 5; i++)
+                                {
+                                    <span class="starFadeN"></span>
+                                }
+                            </div>
+
+                        </a>
+
+                   
+                </div>
+            }
+        </div>
+    </div>
+

@@ -1,0 +1,51 @@
+﻿@model Proiect.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titie-section wow fadeInDown animated ">
+            <h1>Inregistrare</h1>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "my-form", role = "form" }))
+{
+    <div class="fieldset">
+        @Html.AntiForgeryToken()
+        <h4 class = "fs-title">Creeaza un cont nou.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        
+            @Html.LabelFor(m => m.Email, new { @class = "fs-title" })
+            
+                @Html.TextBoxFor(m => m.Email)
+
+            @Html.LabelFor(m => m.UserName, new { @class = "fs-title" })
+            
+                @Html.TextBoxFor(m => m.UserName)
+
+            @Html.LabelFor(m => m.Password,"Parola", new { @class = "fs-title" })
+            
+                @Html.PasswordFor(m => m.Password)
+
+            @Html.LabelFor(m => m.ConfirmPassword,"Confirma parola" ,new { @class = "fs-title" })
+            
+                @Html.PasswordFor(m => m.ConfirmPassword)
+
+        
+            @Html.LabelFor(m => m.PhoneNumber,"Numar de telefon", new { @class = "fs-title" })
+            
+                @Html.TextBoxFor(m => m.PhoneNumber)
+
+
+                <input type="submit" class="action-button" value="Inregistreaza-te" />
+     </div>
+        }
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

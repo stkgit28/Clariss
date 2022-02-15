@@ -1,0 +1,56 @@
+﻿@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+
+@if (ViewBag.Nada == true)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titie-section wow fadeInDown animated ">
+                <h1>Comanda dumneavoastra</h1>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="error_msg"><i class="fa fa-thumbs-down"></i>Nu aveti momentan o comanda.</p>
+}
+
+
+@foreach (Proiect.Models.Item product in ViewBag.Products)
+{
+    <div class="my-product">
+        <div class="fieldset-c">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="#" class="gallery-link"><img src="@product.Product.Photo" alt="" class="img-responsive push-bit" /></a>
+                </div>
+                <div class="col-sm-6">
+                    <div class="top-space">
+
+                        <strong class="my-title">@product.Product.Title</strong>
+                    </div>
+                    <hr />
+                    <p class="my-title">@product.Product.Price ron</p>
+                    <hr />
+                    <p> Cantitate: @product.Quantity</p>
+                    <a href="/Orders/Plus/@product.ProductId"><i class="glyphicon glyphicon-plus" style="color: #8B008B;"></i></a>
+                    <a href="/Orders/Minus/@product.ProductId"><i class="glyphicon glyphicon-minus" style="color: #8B008B;"></i></a>
+                    <hr />
+                    <a class="btn btn-danger" href="/Orders/Remove/@product.ProductId">Sterge din comanda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+@if (ViewBag.Nada == true)
+{
+    <a class="btn btn-success center-block" href="">Confirmati comanda</a>
+}
+
+
+
+

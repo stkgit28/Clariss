@@ -1,0 +1,47 @@
+﻿@model Proiect.Models.ApplicationUser
+
+@{
+    /**/
+
+    ViewBag.Title = "Editare rol utilizator";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titie-section wow fadeInDown animated ">
+            <h1>Editare User</h1>
+        </div>
+    </div>
+</div>
+
+<div class="my-form">
+    @using (Html.BeginForm(actionName: "Edit", controllerName: "Users", routeValues: new { id = @Model.Id }))
+    {
+    <div class="fieldset">
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+
+
+        <i class="glyphicon glyphicon-user"></i>
+        @Html.Label("UserName", "Nume utilizator", new { @class = "fs-title" })
+        @Html.EditorFor(m => m.UserName)
+
+        
+
+        <i class="glyphicon glyphicon-envelope"></i>
+        @Html.Label("Email", "Email utilizator", new { @class = "fs-title" })
+        @Html.EditorFor(m => m.Email)
+
+
+        <i class="glyphicon glyphicon-phone"></i>
+        @Html.Label("PhoneNumber", "Numar telefon", new { @class = "fs-title" })
+        @Html.EditorFor(m => m.PhoneNumber)     
+
+        <i class="glyphicon glyphicon-th-list"></i>
+        <label class = "fs-title" >Selectati rolul</label>
+        @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole))
+
+        <button class="action-button" type="submit">Modifica datele utilizatorului</button>
+        </div>
+            }
+        </div>
+

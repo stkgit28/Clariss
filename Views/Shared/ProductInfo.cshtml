@@ -1,0 +1,14 @@
+﻿<div class="panel-heading">@Model.Title</div>
+<div class="panel-body">
+    Descriere produs: <strong>@Model.Description</strong>
+    <br />
+    <i class="glyphicon glyphicon-globe"></i> @Model.Category.CategoryName
+    <br />
+    <strong> @Model.Price </strong>
+    <br />
+    <img src="@Model.Photo" width="330" height="360">
+    <br />
+    <i class="glyphicon glyphicon-user"></i> <i>produs adaugat de de</i>
+    <strong> @Model.User.UserName </strong>
+    <hr>
+</div>

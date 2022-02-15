@@ -1,0 +1,31 @@
+﻿@model Proiect.Models.Category
+
+<div class="my-back">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titie-section wow fadeInDown animated ">
+                <h1>Editare Categorie</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="post" action="/Categories/Edit/@Model.CategoryId" class="my-form">
+        <div class="fieldset">
+
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+
+            @Html.HiddenFor(m => m.CategoryId)
+
+            @Html.Label("CategoryName", "Denumire categorie", new { @class = "fs-title" })
+            <br />
+            @Html.Editor("CategoryName")
+            @Html.ValidationMessageFor(m => m.CategoryName, null, new { @class = "text-danger bl" })
+
+            <button class="action-button" type="submit">Modifica</button>
+        </div>
+    </form>
+
+    <div class="row"></div>
+</div>
+

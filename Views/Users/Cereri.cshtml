@@ -1,0 +1,45 @@
+﻿@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titie-section wow fadeInDown animated ">
+            <h1>Cereri Produse</h1>
+        </div>
+    </div>
+</div>
+
+
+
+
+@foreach (Proiect.Models.Product product in ViewBag.Products)
+{
+    <div class="my-product">
+        <div class="fieldset">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="#" class="gallery-link"><img src="@product.Photo" alt="" class="img-responsive push-bit" /></a>
+                </div>
+                <div class="col-sm-6">
+                    <div class="top-space">
+
+                        <strong class="my-title">@product.Title</strong>
+                    </div>
+                    <hr />
+                    <p class="my-title">@product.Price ron</p>
+                    <hr />
+                    <a class="btn btn-success" href="/Users/Accepta/@product.ProductId">Aproba</a>
+                    <form method="post" action="/Products/Delete/@product.ProductId" style="display:inline;">
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="glyphicon glyphicon-trash btn btn-danger" type="submit">Refuza</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

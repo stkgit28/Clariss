@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Lista categorii";
+}
+
+@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titie-section wow fadeInDown animated ">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</div>
+
+
+<section class="columns">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <div class="col-md-5">
+                <div class="column">
+                    <p>@category.CategoryName</p>
+                    <a class="btn btn-success" href="/Categories/Edit/@category.CategoryId">Editeaza</a>
+                    <form method="post" action="/Categories/Delete/@category.CategoryId" style="display:inline;">
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="glyphicon glyphicon-trash btn btn-danger" type="submit">Sterge</button>
+                    </form>
+                </div>
+            </div>
+        }
+        <br />
+</section>
+
+

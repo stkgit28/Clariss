@@ -1,0 +1,36 @@
+﻿@model Proiect.Models.Category
+@{
+    ViewBag.Title = "Adaugare Categorie";
+}
+
+@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+
+<div class="my-back">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titie-section wow fadeInDown animated ">
+                <h1>Adauga Categorie</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="post" action="/Categories/New" class="my-form">
+        <div class="fieldset">
+
+            @Html.Label("CategoryName", "Denumire categorie", new { @class = "fs-title" })
+            <br />
+            @Html.TextBox("CategoryName")
+            @Html.ValidationMessageFor(m => m.CategoryName, null, new { @class = "text-danger bl"})
+
+            <button class="action-button" type="submit">Adauga</button>
+        </div>
+    </form>
+
+    <div class="row"></div>
+</div>
+
+

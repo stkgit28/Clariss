@@ -1,0 +1,38 @@
+﻿@{
+
+    ViewBag.Title = "Afisare utilizatori";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titie-section wow fadeInDown animated ">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</div>
+
+<section class="columns">
+    @foreach (var user in ViewBag.UsersList)
+    {
+        <div class="col-md-6">
+            <div class="column">
+                    <p>Nume utilizator: @user.UserName</p>
+
+                    <div class="bl"><i class="glyphicon glyphicon-envelope"></i><p>Email utilizator: @user.Email </p></div>
+
+                    @if (@user.PhoneNumber != null)
+                    {
+                    <div class="bl">
+                        <i class="glyphicon glyphicon-phone"></i><p>Telefon utilizator: @user.PhoneNumber</p>
+                    </div>
+                    }
+                        <br />
+                        <a class="btn btn-success" href="/Users/Edit/@user.Id"> Editare utilizator</a>
+                        <a class="btn btn-danger" href="/Users/Delete/@user.Id"> Stergere utilizator</a>
+
+                    </div>
+
+        </div>
+        <br />
+    }
+</section>

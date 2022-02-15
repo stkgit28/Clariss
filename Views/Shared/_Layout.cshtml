@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clariss</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/style.css")
+</head>
+<body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <header class="header-section">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Home/Index"><b>C</b>lariss</a>
+                    <img src="~/Images/clariss.png" width="60" height="50" alt="">
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Magazin", "Index", "Products")</li>
+                        @if (User.IsInRole("User"))
+                        {
+                            <li>@Html.ActionLink("Comanda", "Index", "Orders")</li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Utilizatori", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Cereri", "Cereri", "Users")</li>
+                            <li>@Html.ActionLink("Adauga categorie", "New", "Categories")</li>
+                        }
+
+                        @if (User.IsInRole("Colaborator") || User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Adauga produs", "New", "Products")</li>
+                            <li>@Html.ActionLink("Categorii", "Index", "Categories")</li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </header>
+    </nav>
+    
+    <div class="container body-content">
+        @RenderBody()
+        <footer class="footer">
+            <p>&copy; @DateTime.Now.Year </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

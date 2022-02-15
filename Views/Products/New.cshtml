@@ -1,0 +1,55 @@
+﻿@model Proiect.Models.Product
+
+@if (TempData.ContainsKey("message"))
+{
+    <p class="error_msg"><i class="glyphicon glyphicon-ok-circle"> </i> @TempData["message"]</p>
+}
+<div class="my-back">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titie-section wow fadeInDown animated ">
+                <h1>Adauga Produs</h1>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("New", "Products", FormMethod.Post, new { enctype = "multipart/form-data", @class = "my-form" }))
+    {
+        <div class="fieldset">
+            @Html.Label("Title", "Denumire produs", new { @class = "fs-title" })
+            <br />
+            @Html.TextBox("Title", null)
+
+            @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger bl" })
+
+
+            @Html.Label("Description", "Descriere produs", new { @class = "fs-title" })
+
+            @Html.TextArea("Description")
+            @Html.ValidationMessage("Description", null, new { @class = "text-danger bl" })
+
+
+            @Html.Label("Price", "Pret produs", new { @class = "fs-title" })
+
+            @Html.TextArea("Price")
+            @Html.ValidationMessage("Price", null, new { @class = "text-danger bl" })
+
+
+
+            <label class="fs-title">Imagine</label>
+            <input type="file" name="UploadedFile" id="UploadedFile" />
+
+
+            <label class="fs-title">Selectati categoria</label>
+            @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value", "Text"),
+            "Selectati categoria")
+            @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+
+            <br />
+            <button class="action-button" type="submit">Adauga produs</button>
+        </div>
+    }
+
+    <div class="row"></div>
+</div>
+
